@@ -484,7 +484,7 @@ func (s *jsSSHSession) Run() {
 	if s.pendingResizeCols != 0 {
 		cols = s.pendingResizeCols
 	}
-	err = session.RequestPty("xterm", rows, cols, ssh.TerminalModes{})
+	err = session.RequestPty("xterm-256color", rows, cols, ssh.TerminalModes{})
 	if err != nil {
 		writeError("Pseudo Terminal", err)
 		return

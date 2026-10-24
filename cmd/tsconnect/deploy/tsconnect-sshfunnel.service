@@ -1,0 +1,10 @@
+[Unit]
+Description=tsnet node "ssh" exposing themed tsconnect via Funnel
+After=network-online.target tsconnect-themed.service
+Wants=tsconnect-themed.service
+[Service]
+ExecStart=%h/dev/tsconnect-themed/sshfunnel -hostname ssh -backend http://127.0.0.1:9091
+Restart=on-failure
+RestartSec=10
+[Install]
+WantedBy=default.target

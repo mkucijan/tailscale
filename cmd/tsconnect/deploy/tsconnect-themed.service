@@ -1,0 +1,9 @@
+[Unit]
+Description=Themed Tailscale browser SSH client (tsconnect)
+After=network-online.target
+[Service]
+WorkingDirectory=%h/dev/tsconnect-themed/tailscale
+ExecStart=%h/dev/tsconnect-themed/tsconnect -addr 127.0.0.1:9091 serve
+Restart=on-failure
+[Install]
+WantedBy=default.target

@@ -54,7 +54,7 @@ function SSHSession({
     }
   }, [ref])
 
-  return <div class="flex-grow bg-black p-2 overflow-hidden" ref={ref} />
+  return <div class="ts-term" ref={ref} />
 }
 
 function NoSSHPeers() {

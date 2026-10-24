@@ -29,6 +29,34 @@ var embeddedFS embed.FS
 //go:embed dist/*
 var embeddedDistFS embed.FS
 
+//go:embed pwa/*
+var embeddedPWAFS embed.FS
+
+func servePWA(mux *http.ServeMux) {
+	files := map[string][2]string{
+		"/manifest.webmanifest": {"pwa/manifest.webmanifest", "application/manifest+json"},
+		"/sw.js": {"pwa/sw.js", "text/javascript; charset=utf-8"},
+		"/icons/icon-192.png": {"pwa/icon-192.png", "image/png"},
+		"/icons/icon-512.png": {"pwa/icon-512.png", "image/png"},
+		"/icons/maskable-512.png": {"pwa/maskable-512.png", "image/png"},
+		"/icons/apple-touch-icon.png": {"pwa/apple-touch-icon.png", "image/png"},
+	}
+	for route, f := range files {
+		b, err := embeddedPWAFS.ReadFile(f[0])
+		if err != nil {
+			log.Fatalf("pwa: %v", err)
+		}
+		ct, name := f[1], f[0]
+		mux.HandleFunc(route, func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", ct)
+			if route == "/sw.js" || route == "/manifest.webmanifest" {
+				w.Header().Set("Cache-Control", "no-cache")
+			}
+			http.ServeContent(w, r, name, serveStartTime, bytes.NewReader(b))
+		})
+	}
+}
+
 var serveStartTime = time.Now()
 
 func runServe() {
@@ -49,6 +77,7 @@ func runServe() {
 	if err != nil {
 		log.Fatalf("Could not generate index.html: %v", err)
 	}
+	servePWA(mux)
 	mux.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.ServeContent(w, r, "index.html", serveStartTime, bytes.NewReader(indexBytes))
 	}))

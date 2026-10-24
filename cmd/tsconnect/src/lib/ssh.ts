@@ -30,6 +30,15 @@ export function runSSHSession(
   const term = new Terminal({
     cursorBlink: true,
     allowProposedApi: true,
+    theme: {
+      background: "#282828", foreground: "#dcdcdc", cursor: "#dcdcdc", cursorAccent: "#282828",
+      selectionBackground: "#456578",
+      black: "#282828", red: "#8f040d", green: "#38874a", yellow: "#f7a921",
+      blue: "#456578", magenta: "#b16286", cyan: "#78ad9a", white: "#dcdcdc",
+      brightBlack: "#928374", brightRed: "#fb4934", brightGreen: "#b8bb26", brightYellow: "#fabd2f",
+      brightBlue: "#83a598", brightMagenta: "#d3869b", brightCyan: "#8ec07c", brightWhite: "#ebdbb2",
+    },
+    fontFamily: "Menlo for Powerline, Menlo, DejaVu Sans Mono, monospace",
     ...terminalOptions,
   })
 
@@ -82,6 +91,7 @@ export function runSSHSession(
   // Make terminal and SSH session track the size of the containing DOM node.
   resizeObserver = new parentWindow.ResizeObserver(() => fitAddon.fit())
   resizeObserver.observe(termContainerNode)
+  parentWindow.addEventListener("resize", () => fitAddon.fit())
   term.onResize(({ rows, cols }) => sshSession.resize(rows, cols))
 
   // Close the session if the user closes the window without an explicit

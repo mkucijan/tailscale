@@ -1,29 +1,22 @@
 // Copyright (c) Tailscale Inc & contributors
 // SPDX-License-Identifier: BSD-3-Clause
 
+// Themed: no header bar. Status shows as a small corner label before
+// connecting; once Running, logout is a tiny corner icon visible on hover.
 export function Header({ state, ipn }: { state: IPNState; ipn?: IPN }) {
-  const stateText = STATE_LABELS[state]
-
-  let logoutButton
   if (state === "Running") {
-    logoutButton = (
+    return (
       <button
-        class="button bg-gray-500 border-gray-500 text-white hover:bg-gray-600 hover:border-gray-600 ml-2 font-bold"
+        class="ts-logout"
+        title="Log out of Tailscale"
+        aria-label="Log out of Tailscale"
         onClick={() => ipn?.logout()}
       >
-        Logout
+        ⏻
       </button>
     )
   }
-  return (
-    <div class="bg-gray-100 border-b border-gray-200 pt-4 pb-2">
-      <header class="container mx-auto px-4 flex flex-row items-center">
-        <h1 class="text-3xl font-bold grow">Tailscale Connect</h1>
-        <div class="text-gray-600">{stateText}</div>
-        {logoutButton}
-      </header>
-    </div>
-  )
+  return <div class="ts-status">{STATE_LABELS[state]}</div>
 }
 
 const STATE_LABELS = {
