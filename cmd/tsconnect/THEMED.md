@@ -9,7 +9,7 @@ with an Alacritty-like dark theme, exposed publicly via Tailscale Funnel.
 - No header bar; terminal fills the viewport, no scrollbars; window-resize refit.
 - Logout: tiny ⏻ icon top-right, visible on hover/focus, once connected. Status label in the corner before that.
 - PWA: `pwa/` (manifest, icons, network-first service worker that never caches the wasm), served by `serve.go`.
-- `deploy/sshfunnel`: tiny tsnet node (hostname `ssh`) that reverse-proxies to the local server over Funnel → `https://ssh.<tailnet>.ts.net/`.
+- `deploy/sshfunnel`: tiny tsnet node (hostname `ssh-arch`, set via `SSHFUNNEL_HOSTNAME` in the unit) that reverse-proxies to the local server over Funnel → `https://ssh-arch.<tailnet>.ts.net/`.
 
 ## Build & run
     ./tool/go run ./cmd/tsconnect build          # static assets into cmd/tsconnect/dist
@@ -19,7 +19,7 @@ with an Alacritty-like dark theme, exposed publicly via Tailscale Funnel.
 Or just `cmd/tsconnect/deploy/install.sh` (builds both binaries next to the repo, installs and starts
 `deploy/tsconnect-themed.service` and `deploy/tsconnect-sshfunnel.service` as systemd user units).
 First start of `sshfunnel` prints a login URL in `journalctl --user -u tsconnect-sshfunnel`.
-Funnel must be enabled for the tailnet. Disable key expiry for the `ssh` node in the admin console.
+Funnel must be enabled for the tailnet. Disable key expiry for the `ssh-arch` node in the admin console.
 
 ## Update to a new upstream release
     cmd/tsconnect/deploy/update.sh

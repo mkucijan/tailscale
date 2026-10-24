@@ -1,7 +1,7 @@
 // Copyright (c) Tailscale Inc & contributors
 // SPDX-License-Identifier: BSD-3-Clause
 
-// sshfunnel is a tiny tsnet node (default hostname "ssh") that exposes the
+// sshfunnel is a tiny tsnet node (default hostname "ssh-arch") that exposes the
 // locally running themed tsconnect server over Tailscale Funnel, giving it its
 // own URL: https://<hostname>.<tailnet>.ts.net/
 package main
@@ -19,7 +19,7 @@ import (
 )
 
 var (
-	hostname = flag.String("hostname", "ssh", "tailnet hostname for this node")
+	hostname = flag.String("hostname", "ssh-arch", "tailnet hostname for this node")
 	backend  = flag.String("backend", "http://127.0.0.1:9091", "local tsconnect server")
 	stateDir = flag.String("state", "", "state dir (default ~/.local/state/tsconnect-sshfunnel)")
 )

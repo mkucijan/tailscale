@@ -15,5 +15,5 @@ systemctl --user daemon-reload
 systemctl --user enable --now tsconnect-themed tsconnect-sshfunnel
 systemctl --user restart tsconnect-themed tsconnect-sshfunnel
 echo "Installed. First run of sshfunnel needs a login: journalctl --user -u tsconnect-sshfunnel | grep login.tailscale"
-echo "Public URL: https://ssh.<tailnet>.ts.net/  (needs Funnel enabled for the tailnet)"
+echo "Public URL: https://ssh-arch.<tailnet>.ts.net/  (needs Funnel enabled for the tailnet)"
 echo "Alternative without the extra node: tailscale funnel --bg 9091   (serves on https://<this-host>.<tailnet>.ts.net/)"

@@ -1,9 +1,10 @@
 [Unit]
-Description=tsnet node "ssh" exposing themed tsconnect via Funnel
+Description=tsnet node (ssh-arch) exposing themed tsconnect via Funnel
 After=network-online.target tsconnect-themed.service
 Wants=tsconnect-themed.service
 [Service]
-ExecStart=%h/dev/tsconnect-themed/sshfunnel -hostname ssh -backend http://127.0.0.1:9091
+Environment=SSHFUNNEL_HOSTNAME=ssh-arch
+ExecStart=%h/dev/tsconnect-themed/sshfunnel -hostname ${SSHFUNNEL_HOSTNAME} -backend http://127.0.0.1:9091
 Restart=on-failure
 RestartSec=10
 [Install]
