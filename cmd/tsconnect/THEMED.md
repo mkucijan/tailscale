@@ -4,7 +4,7 @@ A self-hosted Tailscale browser SSH client (Tailscale Connect / `cmd/tsconnect`)
 with an Alacritty-like dark theme, exposed publicly via Tailscale Funnel.
 
 ## Changes vs upstream
-- xterm.js theme: Catppuccin Mocha (bg `#1e1e2e`, fg `#cdd6f4`, cursor `#f5e0dc`, official 16 ANSI); Menlo/DejaVu mono font (`src/lib/ssh.ts`). Page/PWA theme-color and `.ts-term` match.
+- xterm.js theme: VS Code Dark+ / Dark Modern (bg `#1f1f1f`, fg `#cccccc`, cursor `#ffffff`, VS Code Dark+ 16 ANSI; minimumContrastRatio 4.5); Menlo/DejaVu mono font (`src/lib/ssh.ts`). Page/PWA theme-color and `.ts-term` match.
 - PTY requests `TERM=xterm-256color` instead of `xterm` (`wasm/wasm_js.go`).
 - No header bar; terminal fills the viewport, no scrollbars; window-resize refit.
 - Logout: tiny ⏻ icon top-right, visible on hover/focus, once connected. Status label in the corner before that.

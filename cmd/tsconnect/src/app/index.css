@@ -74,11 +74,11 @@
 }
 
 /* Themed: full-viewport, no scrollbars */
-html, body { margin: 0; padding: 0; width: 100vw; height: 100vh; overflow: hidden; background: #1e1e2e; }
-.ts-term { width: 100vw; height: 100vh; padding: 2px; box-sizing: border-box; background: #1e1e2e; overflow: hidden; }
-.ts-term .xterm-viewport { overflow-y: hidden !important; scrollbar-width: none; background-color: #1e1e2e !important; }
+html, body { margin: 0; padding: 0; width: 100vw; height: 100vh; overflow: hidden; background: #1f1f1f; }
+.ts-term { width: 100vw; height: 100vh; padding: 2px; box-sizing: border-box; background: #1f1f1f; overflow: hidden; }
+.ts-term .xterm-viewport { overflow-y: hidden !important; scrollbar-width: none; background-color: #1f1f1f !important; }
 .ts-term .xterm-viewport::-webkit-scrollbar { display: none; width: 0; height: 0; }
-.ts-status { position: fixed; top: 4px; right: 8px; font-size: 11px; color: #6c7086; z-index: 50; }
+.ts-status { position: fixed; top: 4px; right: 8px; font-size: 11px; color: #9d9d9d; z-index: 50; }
 .ts-logout { position: fixed; top: 4px; right: 6px; z-index: 50; width: 22px; height: 22px; line-height: 22px;
-  font-size: 13px; color: #cdd6f4; background: rgba(30,30,46,.85); border-radius: 4px; opacity: 0; transition: opacity 150ms; cursor: pointer; }
+  font-size: 13px; color: #cccccc; background: rgba(31,31,31,.85); border-radius: 4px; opacity: 0; transition: opacity 150ms; cursor: pointer; }
 .ts-logout:hover, .ts-logout:focus { opacity: 1; outline: none; }
